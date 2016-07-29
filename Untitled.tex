@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX Simple Template
+% Author: Stanislav Schmidt
+%
+% Version History:
+% 3.5, 29/7/2016
+% - Improved PDF bookmarks:
+%    1) Added new package \usepackage{bookmark}
+%    2) hyperref is configured to open bookmarks up to level 2
+%    3) bookmark package is configured to make level 0 bookmarks bold and
+%         level 2 bookmarks italic
+%    4) bookmark package is configured to make all bookmarks numbered
+% - Added additional description to template
+% - Removed Mendeley from the bibliography include
+%
+% 3.4, 7/5/2016
+% - Added \noindent to the abstract
+% - Changed multicols to the unbalanced (starred) version ``multicol*''
+%
+% 3.3, 22/3/2016
+% - Made email address clickable in the author footnote
+% - Uncommented the A4 paper geometry and the multicols
+%
+% 3.2, 15/02/2016
+% - Added option [dvipsnames] to xcolor for MidnightBlue colour
+%
+% 3.1
+% - Added "colorlinks=true" to the hypersetup
+% - Added "hidelinks" to the hypersetup
+% - Added "allcolors=MidnightBlue" to the hypersetup
+% - Added "breaklinks" to the hypersetup
+% - Added structure comments "DOCUMENT START" and "BIBLIOGRAPHY"
+% - Added options "[usenames,dvipsnames]" to the xcolor package
+% - Replaced "\includepackage[hyphens]{url}" by "\PassOptionsToPackage{hyphens}{url}"
+%
+% 3.0
+% - Added Template Description
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% STANDARD PACKAGES
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[l2tabu, orthodox]{nag} % Issues warnings if deprecated packages are used
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools,amsfonts,amssymb}
+\usepackage{parskip}
+\usepackage[dvipsnames]{xcolor}
+\PassOptionsToPackage{hyphens}{url} % hyperref loads the url package
+\usepackage{hyperref}
+\usepackage[UKenglish]{babel}
+\usepackage[nodayofweek,long,24hr]{datetime}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+% \usepackage[a4paper]{geometry}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% ADDITIONAL PACKAGES
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{graphicx}
+% \usepackage{siunitx}
+% \usepackage{cleveref}
+% \usepackage{booktabs,longtable,tabu}
+% \usepackage{tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% METADATA
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*\mytitle{NoTitle}
+\newcommand*\myname{Stanislav Schmidt}
+\newcommand*\myemail{S.Schmidt@soton.ac.uk}
+\newcommand*\myuniversity{University of Southampton}
+\input{display_date}%\newdate{creation_date}{31}{12}{2000}
+
+\title{\mytitle}
+\author{\myname\thanks{\href{mailto:\myemail}{\myemail}}\\\myuniversity}
+\date{\displaydate{display_date}\thanks{Last modified \today}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% BOOKMARK CONFIGURATION
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bookmarksetup{
+  open,
+  numbered,
+  addtohook={%
+    \ifnum\bookmarkget{level}<1 %
+      \bookmarksetup{bold}%
+    \fi%
+    \ifnum\bookmarkget{level}>1 %
+      \bookmarksetup{italic}%
+    \fi
+  },
+}
+
+\hypersetup{
+  pdftitle={\mytitle},
+  pdfauthor={\myname},
+  colorlinks=true,
+  allcolors=MidnightBlue,
+% hidelinks, % uncomment for printing
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DOCUMENT START
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+% \begin{abstract}\noindent
+% ABSTRACT
+% \end{abstract}
+
+% \begin{multicols*}{2}
+% % MAIN TEXT
+% \end{multicols*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% BIBLIOGRAPHY
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{thebibliography}{9}
+% \bibitem{SchmidtS}
+%   Schmidt, S. -- \textit{``The Title''}, \href{http://www.google.co.uk}{Link}
+% \end{thebibliography}
+
+% % \bibliographystyle{abbrv}
+% % \bibliographystyle{ieeetr}
+% % \bibliographystyle{utphys}
+% \bibliographystyle{JHEP-improved}
+% \bibliography{lib-zotero}
+\end{document}
