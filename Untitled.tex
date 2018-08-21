@@ -1,41 +1,45 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LaTeX Simple Template
-% Author: Stanislav Schmidt
-%
-% Version History:
-% 3.5, 29/7/2016
-% - Improved PDF bookmarks:
-%    1) Added new package \usepackage{bookmark}
-%    2) hyperref is configured to open bookmarks up to level 2
-%    3) bookmark package is configured to make level 0 bookmarks bold and
-%         level 2 bookmarks italic
-%    4) bookmark package is configured to make all bookmarks numbered
-% - Added additional description to template
-% - Removed Mendeley from the bibliography include
-%
-% 3.4, 7/5/2016
-% - Added \noindent to the abstract
-% - Changed multicols to the unbalanced (starred) version ``multicol*''
-%
-% 3.3, 22/3/2016
-% - Made email address clickable in the author footnote
-% - Uncommented the A4 paper geometry and the multicols
-%
-% 3.2, 15/02/2016
-% - Added option [dvipsnames] to xcolor for MidnightBlue colour
-%
-% 3.1
-% - Added "colorlinks=true" to the hypersetup
-% - Added "hidelinks" to the hypersetup
-% - Added "allcolors=MidnightBlue" to the hypersetup
-% - Added "breaklinks" to the hypersetup
-% - Added structure comments "DOCUMENT START" and "BIBLIOGRAPHY"
-% - Added options "[usenames,dvipsnames]" to the xcolor package
-% - Replaced "\includepackage[hyphens]{url}" by "\PassOptionsToPackage{hyphens}{url}"
-%
-% 3.0
-% - Added Template Description
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+LaTeX Simple Template
+Author: Stanislav Schmidt
+
+Version History:
+3.6, 6/8/2016
+- Added some custom command definitions
+
+3.5, 29/7/2016
+- Improved PDF bookmarks:
+   1) Added new package \usepackage{bookmark}
+   2) hyperref is configured to open bookmarks up to level 2
+   3) bookmark package is configured to make level 0 bookmarks bold and
+        level 2 bookmarks italic
+   4) bookmark package is configured to make all bookmarks numbered
+   5) bookmark open level is set to 2
+- Added additional description to template
+- Removed Mendeley from the bibliography include
+
+3.4, 7/5/2016
+- Added \noindent to the abstract
+- Changed multicols to the unbalanced (starred) version ``multicol*''
+
+3.3, 22/3/2016
+- Made email address clickable in the author footnote
+- Uncommented the A4 paper geometry and the multicols
+
+3.2, 15/02/2016
+- Added option [dvipsnames] to xcolor for MidnightBlue colour
+
+3.1
+- Added "colorlinks=true" to the hypersetup
+- Added "hidelinks" to the hypersetup
+- Added "allcolors=MidnightBlue" to the hypersetup
+- Added "breaklinks" to the hypersetup
+- Added structure comments "DOCUMENT START" and "BIBLIOGRAPHY"
+- Added options "[usenames,dvipsnames]" to the xcolor package
+- Replaced "\includepackage[hyphens]{url}" by "\PassOptionsToPackage{hyphens}{url}"
+
+3.0
+- Added Template Description
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -50,7 +54,7 @@
 \usepackage[dvipsnames]{xcolor}
 \PassOptionsToPackage{hyphens}{url} % hyperref loads the url package
 \usepackage{hyperref}
-\usepackage[UKenglish]{babel}
+\usepackage[english]{babel}
 \usepackage[nodayofweek,long,24hr]{datetime}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
@@ -81,7 +85,7 @@
 \newcommand*\myname{Stanislav Schmidt}
 \newcommand*\myemail{S.Schmidt@soton.ac.uk}
 \newcommand*\myuniversity{University of Southampton}
-\input{display_date}%\newdate{creation_date}{31}{12}{2000}
+\input{display_date}%\newdate{display_date}{31}{12}{2000}
 
 \title{\mytitle}
 \author{\myname\thanks{\href{mailto:\myemail}{\myemail}}\\\myuniversity}
@@ -94,7 +98,7 @@
 \bookmarksetup{
   open,
   numbered,
-  addtohook={%
+  addtohook={% CHANGE THE LEVELS DEPENDING ON WHETHER CHAPTER OR SECTION IS THE LOWEST LEVEL
     \ifnum\bookmarkget{level}<1 %
       \bookmarksetup{bold}%
     \fi%
@@ -109,8 +113,24 @@
   pdfauthor={\myname},
   colorlinks=true,
   allcolors=MidnightBlue,
+  bookmarksopen=true,
+  bookmarksopenlevel=2,
 % hidelinks, % uncomment for printing
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CUSTOM COMMANDS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*\diff{\mathop{}\!\mathrm{d}} % Differential operator for integrals
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\mk[1]{\mkern#1mu} % Add spacing in math mode, e.g. \int\mk{-5}\Diff{4}x
+\newcommand*\Tr{\ensuremath{\operatorname{Tr}}}
+\newcommand*\tr{\ensuremath{\operatorname{tr}}}
+\newcommand*\id{\ensuremath{\operatorname{id}}}
+\newcommand*\diag{\ensuremath{\operatorname{diag}}}
+\newcommand*\thooft{'t~Hooft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
